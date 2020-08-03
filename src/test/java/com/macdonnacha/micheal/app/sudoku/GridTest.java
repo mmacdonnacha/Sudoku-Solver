@@ -2,7 +2,7 @@ package com.macdonnacha.micheal.app.sudoku;
 
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -22,30 +22,58 @@ public class GridTest {
     }
 
     @Test
-    public void gridRowIsLengthNine(){
+    public void singleLineSolution(){
         assertEquals(grid.solutionAsSingleLine(), 
             "123456789123456789123456789123456789123456789123456789123456789123456789123456789");
     }
 
     @Test
-    public void rowIsLengthNine()
+    public void rowsAreLengthNine()
     {
-        Cell[] row = grid.getRow(0);
-        assertEquals(row.length, 9);
+        boolean isLengthNine = false;
+        for(int i=0; i<9; i++){
+            if(grid.getRow(i).length != 9){
+                isLengthNine = false;
+                break;
+            }
+
+            isLengthNine = true;
+
+        }
+       assertTrue(isLengthNine);
     }
 
     @Test
-    public void columnIsLengthNine()
+    public void columnsAreLengthNine()
     {
-        Cell[] column = grid.getColumn(0);
-        assertEquals(column.length, 9);
+        boolean isLengthNine = false;
+        for(int i=0; i<9; i++){
+            if(grid.getColumn(i).length != 9){
+                isLengthNine = false;
+                break;
+            }
+
+            isLengthNine = true;
+
+        }
+       assertTrue(isLengthNine);
     }
 
 
-    // @Test
-    // public void yCoordintate()
-    // {
-    //     Cell c = new Cell(1,6);
-    //     assertEquals(c.getY(), 6);
-    // }
+    @Test
+    public void QuadrantAreNineCells()
+    {
+        boolean isLengthNine = false;
+        for(int i=0; i<9; i++){
+            if(grid.getSquare(i).length != 9){
+                isLengthNine = false;
+                break;
+            }
+
+            isLengthNine = true;
+
+        }
+       assertTrue(isLengthNine);
+    }
+
 }

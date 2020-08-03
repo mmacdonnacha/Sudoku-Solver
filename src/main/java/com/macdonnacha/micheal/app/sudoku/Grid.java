@@ -49,6 +49,69 @@ public class Grid {
         return col.toArray(new Cell[0]);
     }
 
+    public Cell[] getSquare(int quadrant){
+        ArrayList<Cell> quad = new ArrayList<>();
+        int initialI = 0;
+        int initialJ = 0;
+        int resetJ;
+        if(!(0 <= quadrant && quadrant < 9)){
+            quadrant = 0;
+        } 
+
+        switch(quadrant){
+            case 0:
+                initialI = 0;
+                initialJ = 0;
+                break;
+            case 1:
+                initialI = 0;
+                initialJ = 3;
+                break;
+            case 2:
+                initialI = 0;
+                initialJ = 6;
+                break;
+            case 3:
+                initialI = 3;
+                initialJ = 0;
+                break;
+            case 4:
+                initialI = 3;
+                initialJ = 3;
+                break;
+            case 5:
+                initialI = 3;
+                initialJ = 6;
+                break;
+            case 6:
+                initialI = 6;
+                initialJ = 0;
+                break;
+            case 7:
+                initialI = 6;
+                initialJ = 3;
+                break;
+            case 8:
+                initialI = 6;
+                initialJ = 6;
+                break;
+        }
+
+
+        resetJ = initialJ;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                quad.add(this.grid[initialI][initialJ]);
+                initialJ++;
+            }
+            initialI++;
+            initialJ = resetJ;
+        }
+
+        return quad.toArray(new Cell[0]);
+    }
+
 
     public String solutionAsSingleLine(){
         StringBuilder sb = new StringBuilder();
