@@ -9,8 +9,13 @@ public class Cell {
     public Cell(int x, int y){
         this.x = x;
         this.y = y;
-        value = -1;
-        candidates = new int[]{0,1,2,3,4,5};
+        value = 0;
+
+        // [0] is the amount of possible candidates
+        // the rest of the array is 1 or 0 for possible candidates
+        // candidate[4] = 1 means that 4 is a  candidate 
+        // candidate[6] = 0 means that 6 is not a candidate
+        candidates = new int[]{9, 1, 1, 1, 1, 1, 1, 1, 1, 1}; 
     }
 
 
@@ -23,15 +28,26 @@ public class Cell {
     }
 
     public int value(){
-        if (candidates.length > 1){
-            return 0;
-        }else {
-            return value;
-        }
+        return this.value;
     }
 
     public void setValue(int num){
-        candidates = new int[]{ num };
-        value = num;
+        
+        if(num == 0){
+            // do nothing as candidates is already set correctly
+        } else {
+            this.candidates = new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            this.candidates[num] = 1;
+            value = num;
+        }
+    }
+
+
+    public boolean isSolved(){
+        return this.candidates[0] == 1 && this.value != 0;
+    }
+
+    public String getPossibleCandidates(){
+        return candidates.toString();
     }
 }
