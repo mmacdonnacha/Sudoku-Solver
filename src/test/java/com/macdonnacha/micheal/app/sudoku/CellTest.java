@@ -78,4 +78,14 @@ public class CellTest {
         c.setValue(5);
         assertTrue(c.isSolved());
     }
+
+    @Test
+    public void isInQuadrantThree(){
+        assertEquals(c.getQuadrant(), 2);
+    }
+
+    @Test
+    public void isNotInQuadrantOne(){
+        assertNotEquals(c.getQuadrant(), 0);
+    }
 }

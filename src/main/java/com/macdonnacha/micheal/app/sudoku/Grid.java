@@ -28,11 +28,20 @@ public class Grid {
 
     }
 
+    public Cell getCell(int x, int y){
+        return this.grid[x][y];
+    }
+
     public Cell[] getRow(int row){
         if(0 <= row && row < 9)     
             return this.grid[row];
 
         return this.grid[0];
+    }
+
+    public Cell[] getRow(Cell cell){
+        int row = cell.getX();
+        return this.grid[row];
     }
 
     public Cell[] getColumn(int column){
@@ -44,6 +53,15 @@ public class Grid {
 
         for(int i=0; i<this.grid.length; i++){
             col.add(this.grid[i][column]);
+        }
+
+        return col.toArray(new Cell[0]);
+    }
+
+    public Cell[] getColumn(Cell cell){
+        ArrayList<Cell> col = new ArrayList<>();
+        for(int i=0; i<this.grid.length; i++){
+            col.add(this.grid[i][cell.getY()]);
         }
 
         return col.toArray(new Cell[0]);
@@ -112,6 +130,67 @@ public class Grid {
         return quad.toArray(new Cell[0]);
     }
 
+    public Cell[] getSquare(Cell cell){
+        ArrayList<Cell> quad = new ArrayList<>();
+        int initialI = 0;
+        int initialJ = 0;
+        int resetJ;
+        int quadrant = cell.getQuadrant();
+        
+
+        switch(quadrant){
+            case 0:
+                initialI = 0;
+                initialJ = 0;
+                break;
+            case 1:
+                initialI = 0;
+                initialJ = 3;
+                break;
+            case 2:
+                initialI = 0;
+                initialJ = 6;
+                break;
+            case 3:
+                initialI = 3;
+                initialJ = 0;
+                break;
+            case 4:
+                initialI = 3;
+                initialJ = 3;
+                break;
+            case 5:
+                initialI = 3;
+                initialJ = 6;
+                break;
+            case 6:
+                initialI = 6;
+                initialJ = 0;
+                break;
+            case 7:
+                initialI = 6;
+                initialJ = 3;
+                break;
+            case 8:
+                initialI = 6;
+                initialJ = 6;
+                break;
+        }
+
+
+        resetJ = initialJ;
+
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                quad.add(this.grid[initialI][initialJ]);
+                initialJ++;
+            }
+            initialI++;
+            initialJ = resetJ;
+        }
+
+        return quad.toArray(new Cell[0]);
+    }
 
     public String solutionAsSingleLine(){
         StringBuilder sb = new StringBuilder();
@@ -122,7 +201,6 @@ public class Grid {
         }
         return sb.toString();
     }
-
 
     public String toString(){
         StringBuilder sb = new StringBuilder();

@@ -3,6 +3,7 @@ package com.macdonnacha.micheal.app.sudoku;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -76,4 +77,52 @@ public class GridTest {
        assertTrue(isLengthNine);
     }
 
+
+    @Test
+    public void getRowReturnsCorrectCells(){
+        Cell[] actualRow = {
+            this.grid.getCell(0,0),
+            this.grid.getCell(0,1),
+            this.grid.getCell(0,2),
+            this.grid.getCell(0,3),
+            this.grid.getCell(0,4),
+            this.grid.getCell(0,5),
+            this.grid.getCell(0,6),
+            this.grid.getCell(0,7),
+            this.grid.getCell(0,8)
+        };
+
+        Cell[] expectedRow = this.grid.getRow(0);
+        assertArrayEquals(expectedRow, actualRow);
+    }
+
+    @Test
+    public void getColumnReturnsCorrectCells(){
+        Cell[] actual = {
+            this.grid.getCell(0,0),
+            this.grid.getCell(1,0),
+            this.grid.getCell(2,0),
+            this.grid.getCell(3,0),
+            this.grid.getCell(4,0),
+            this.grid.getCell(5,0),
+            this.grid.getCell(6,0),
+            this.grid.getCell(7,0),
+            this.grid.getCell(8,0)
+        };
+
+        Cell[] expected = this.grid.getColumn(0);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void getSquareReturnsCorrectCells(){
+        Cell[] actual = {
+            this.grid.getCell(0,0), this.grid.getCell(0,1), this.grid.getCell(0,2),
+            this.grid.getCell(1,0), this.grid.getCell(1,1), this.grid.getCell(1,2),
+            this.grid.getCell(2,0), this.grid.getCell(2,1), this.grid.getCell(2,2)
+        };
+
+        Cell[] expected = this.grid.getSquare(0);
+        assertArrayEquals(expected, actual);
+    }
 }

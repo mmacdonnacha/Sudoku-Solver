@@ -1,8 +1,12 @@
 package com.macdonnacha.micheal.app.sudoku;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Cell {
     private int value;
-    private int[] candidates;
+    private List<Integer> candidates;
     private int x, y;
 
 
@@ -10,12 +14,7 @@ public class Cell {
         this.x = x;
         this.y = y;
         value = 0;
-
-        // [0] is the amount of possible candidates
-        // the rest of the array is 1 or 0 for possible candidates
-        // candidate[4] = 1 means that 4 is a candidate 
-        // candidate[6] = 0 means that 6 is not a candidate
-        candidates = new int[]{9, 1, 1, 1, 1, 1, 1, 1, 1, 1}; 
+        candidates = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9)); 
     }
 
 
@@ -36,19 +35,81 @@ public class Cell {
         if(num == 0){
             // do nothing as candidates is already set in the constructor
         } else {
-            this.candidates = new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            this.candidates[num] = 1;
+            this.candidates = new ArrayList<>();
+            this.candidates.add(num);
             value = num;
+        }
+    }
+
+    public void removeCandidate(int num){
+        if(this.candidates.contains(num)){
+            this.candidates.remove(Integer.valueOf(num));
         }
     }
 
 
     public boolean isSolved(){
-        return this.candidates[0] == 1 && this.value != 0;
+        return this.candidates.size() == 1 && this.value != 0;
+    }
+
+    public int getQuadrant(){
+
+        /*
+            +-+-+-+
+            |0|1|2|
+            +-+-+-+
+            |3|4|5|
+            +-+-+-+
+            |6|7|8|
+            +-+-+-+
+        */
+
+        int square;
+
+        if(0 <= this.x && this.x <= 2){
+            // first row of squares
+            if(0<= this.y && this.y <= 2){
+                // first column of squares i.e top left
+                square = 0;
+            }else if(3<= this.y && this.y <= 5){
+                // second column of squares i.e top middle
+                square = 1;
+            }else {
+                // third column of squares i.e top right
+                square = 2;
+            }
+
+        }else if(3 <= this.x && this.x <= 5){
+            // second row of squares
+            if(0<= this.y && this.y <= 2){
+                // first column of squares i.e middle left
+                square = 3;
+            }else if(3<= this.y && this.y <= 5){
+                // second column of squares i.e middle middle
+                square = 4;
+            }else {
+                // third column of squares i.e middle right
+                square = 5;
+            }
+        } else{
+            // third row of squares
+            if(0<= this.y && this.y <= 2){
+                // first column of squares i.e bottom left
+                square = 6;
+            }else if(3<= this.y && this.y <= 5){
+                // second column of squares i.e bottom middle
+                square = 7;
+            }else {
+                // third column of squares i.e bottom right
+                square = 8;
+            }
+        }
+
+        return square;
     }
 
     public String getPossibleCandidates(){
-        return candidates.toString();
+        return this.candidates.toString();
     }
 
 
