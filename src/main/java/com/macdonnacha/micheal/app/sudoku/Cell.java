@@ -49,7 +49,7 @@ public class Cell {
 
 
     public boolean isSolved(){
-        return this.candidates.size() == 1 && this.value != 0;
+        return this.candidates.size() == 1 && this.value == this.candidates.get(0);
     }
 
     public int getQuadrant(){
@@ -109,12 +109,12 @@ public class Cell {
     }
 
     public String getPossibleCandidates(){
-        return this.candidates.toString();
+        return this.candidates.toString().replace("[", "").replace("]", "");
     }
 
 
     @Override
     public String toString(){
-        return "(" + this.x + ", " + this.y + "), " + this.getPossibleCandidates();
+        return "(" + this.x + ", " + this.y + "), [" + this.getPossibleCandidates() + "]";
     }
 }

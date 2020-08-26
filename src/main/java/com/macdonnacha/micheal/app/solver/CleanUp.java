@@ -10,7 +10,7 @@ public class CleanUp {
         Cell[] row = grid.getRow(cell);
         int value = cell.value();
         for(Cell c : row){
-            if(c != cell || !c.isSolved())
+            if(!c.isSolved())
                 c.removeCandidate(value);
         }
     }
@@ -19,7 +19,7 @@ public class CleanUp {
         Cell[] column = grid.getColumn(cell);
         int value = cell.value();
         for(Cell c : column){
-            if(c != cell || !c.isSolved())
+            if(!c.isSolved())
                 c.removeCandidate(value);
         }
     }
@@ -28,7 +28,7 @@ public class CleanUp {
         Cell[] square = grid.getSquare(cell);
         int value = cell.value();
         for(Cell c : square){
-            if(c != cell || !c.isSolved())
+            if(!c.isSolved())
                 c.removeCandidate(value);
         }
     }
