@@ -1,6 +1,6 @@
-package com.macdonnacha.micheal.app.solver;
+package com.macdonnacha.app.solver;
 
-import com.macdonnacha.micheal.app.sudoku.Cell;
+import com.macdonnacha.app.sudoku.Cell;
 
 public class NakedSingle {
     

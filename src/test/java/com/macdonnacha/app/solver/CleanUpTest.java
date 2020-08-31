@@ -1,10 +1,10 @@
-package com.macdonnacha.micheal.app.solver;
+package com.macdonnacha.app.solver;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import com.macdonnacha.micheal.app.sudoku.Grid;
-import com.macdonnacha.micheal.app.sudoku.Cell;
+import com.macdonnacha.app.sudoku.Grid;
+import com.macdonnacha.app.sudoku.Cell;
 
 import org.junit.Before;
 import org.junit.After;

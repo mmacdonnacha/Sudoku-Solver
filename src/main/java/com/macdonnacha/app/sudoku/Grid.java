@@ -1,4 +1,4 @@
-package com.macdonnacha.micheal.app.sudoku;
+package com.macdonnacha.app.sudoku;
 
 import java.util.ArrayList;
 
