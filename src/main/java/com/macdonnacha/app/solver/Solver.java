@@ -21,12 +21,12 @@ public class Solver {
         do{
             initialGrid = new String(this.grid.solutionAsSingleLine());
 
-            level0Stragies();
+            level0Strategies();
 
         }while(!initialGrid.equals(this.grid.solutionAsSingleLine()));
     }
 
-    public void level0Stragies(){
+    public void level0Strategies(){
         setNakedSingle();
         cleanUpGrid();
         setUnique();
