@@ -1,4 +1,4 @@
-package com.macdonnacha.app.solver;
+package com.macdonnacha.app.solver.level0;
 
 import com.macdonnacha.app.sudoku.Cell;
 

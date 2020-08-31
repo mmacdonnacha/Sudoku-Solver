@@ -1,9 +1,11 @@
-package com.macdonnacha.app.solver;
+package com.macdonnacha.app.solver.level0;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import com.macdonnacha.app.sudoku.Grid;
 import com.macdonnacha.app.sudoku.Cell;
+import com.macdonnacha.app.solver.Solver;
 
 import org.junit.Before;
 import org.junit.After;
@@ -66,6 +68,30 @@ public class UniqueTest {
         boolean shouldBeTrue = this.unique.uniqueCandidateInSquare(cell) == 1 ? true : false;
 
         assertTrue(shouldBeTrue);
+    }
+
+    @Test
+    public void cell00solutionIsNotTheNumberTwoInRow(){
+        Cell cell = this.grid.getCell(0, 0);
+        boolean shouldBeFalse = this.unique.uniqueCandidateInRow(cell) == 2 ? true : false;
+
+        assertFalse(shouldBeFalse);
+    }
+
+    @Test
+    public void cell00solutionIsTheNumberTwoInColumn(){
+        Cell cell = this.grid.getCell(0, 0);
+        boolean shouldBeFalse = this.unique.uniqueCandidateInColumn(cell) == 2 ? true : false;
+
+        assertFalse(shouldBeFalse);
+    }
+
+    @Test
+    public void cell00solutionIsTheNumberTwoInSquare(){
+        Cell cell = this.grid.getCell(0, 0);
+        boolean shouldBeFalse = this.unique.uniqueCandidateInSquare(cell) == 2 ? true : false;
+
+        assertFalse(shouldBeFalse);
     }
 
 }

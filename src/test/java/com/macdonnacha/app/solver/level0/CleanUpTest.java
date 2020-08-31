@@ -1,4 +1,4 @@
-package com.macdonnacha.app.solver;
+package com.macdonnacha.app.solver.level0;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -54,6 +54,7 @@ public class CleanUpTest {
             }
 
             if (shouldBeFalse) {
+                // shouldBeFalse = true
                 // candidate was not removed so test should fail
                 break;
             }
@@ -77,6 +78,7 @@ public class CleanUpTest {
             }
 
             if (shouldBeFalse) {
+                // shouldBeFalse = true
                 // candidate was not removed so test should fail
                 break;
             }
@@ -100,6 +102,7 @@ public class CleanUpTest {
             }
 
             if (shouldBeFalse) {
+                // shouldBeFalse = true
                 // candidate was not removed so test should fail
                 break;
             }
@@ -123,7 +126,8 @@ public class CleanUpTest {
             }
 
             if (!shouldBeTrue) {
-                // candidate was not removed so test should fail
+                // shouldBeTrue = false
+                // candidate was removed so test should fail
                 break;
             }
         }
@@ -147,7 +151,8 @@ public class CleanUpTest {
             }
 
             if (!shouldBeTrue) {
-                // candidate was not removed so test should fail
+                // shouldBeTrue = false
+                // candidate was removed so test should fail
                 break;
             }
         }
@@ -170,6 +175,7 @@ public class CleanUpTest {
             }
 
             if (!shouldBeTrue) {
+                // shouldBeFalse = true
                 // candidate was not removed so test should fail
                 break;
             }
@@ -194,7 +200,8 @@ public class CleanUpTest {
             }
 
             if (!shouldBeTrue) {
-                // candidate was not removed so test should fail
+                // shouldBeTrue = false
+                // candidate was removed so test should fail
                 break;
             }
         }
@@ -217,7 +224,8 @@ public class CleanUpTest {
             
 
                 if (!shouldBeTrue) {
-                    // candidate was not removed so test should fail
+                    // shouldBeTrue = false
+                    // candidate was removed so test should fail
                     break outerLoop;
                 }
             }
@@ -241,7 +249,8 @@ public class CleanUpTest {
             
 
                 if (!shouldBeTrue) {
-                    // candidate was not removed so test should fail
+                    // shouldBeTrue = false
+                    // candidate was removed so test should fail
                     break outerLoop;
                 }
             }

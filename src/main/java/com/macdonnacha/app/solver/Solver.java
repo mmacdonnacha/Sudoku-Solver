@@ -2,6 +2,9 @@ package com.macdonnacha.app.solver;
 
 import com.macdonnacha.app.sudoku.Grid;
 import com.macdonnacha.app.sudoku.Cell;
+import com.macdonnacha.app.solver.level0.CleanUp;
+import com.macdonnacha.app.solver.level0.NakedSingle;
+import com.macdonnacha.app.solver.level0.Unique;
 
 public class Solver {
     private Grid grid;
@@ -21,8 +24,6 @@ public class Solver {
             level0Stragies();
 
         }while(!initialGrid.equals(this.grid.solutionAsSingleLine()));
-
-        
     }
 
     public void level0Stragies(){
@@ -69,11 +70,9 @@ public class Solver {
             for(int col=0; col<9; col++){
                 Cell cell = grid.getCell(row, col);
                 if(!cell.isSolved()){
-                    // System.out.println(cell);
                     int num = unique.uniqueCandidate(cell);
                     if(num != 0){
                         cell.setValue(num);
-                        // System.out.println("Setting value: " + num + " into Cell: " + cell);
                     }
                 }
             }
