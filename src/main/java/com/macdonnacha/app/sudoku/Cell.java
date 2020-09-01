@@ -26,6 +26,10 @@ public class Cell {
         return this.y;
     }
 
+    public String coordinates(){
+        return "(" + this.x + ", " + this.y + ")";
+    }
+
     public int value(){
         return this.value;
     }

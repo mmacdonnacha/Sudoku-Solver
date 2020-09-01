@@ -41,7 +41,7 @@ public class SolverTest {
 
     @Test
     public void nakedSingleTest(){
-        String answer = "956481307020000040700000009800090004670342001500060002300020005090000070405716200";
+        String answer = "956481327120000040700000009800090004679342001500060002300020005090000070485716203";
         solver = new Solver(grid[0]);
         solver.cleanUpGrid();
         solver.setNakedSingle();
@@ -81,7 +81,7 @@ public class SolverTest {
 
     @Test
     public void nakedSingleTest2(){
-        String answer = "008571900000403000100096008810000425304000601520000073200050004000704000001932500";
+        String answer = "008571900000403000100096008810000425304000601520000873200058004000704000001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
         solver.setNakedSingle();
@@ -95,7 +95,7 @@ public class SolverTest {
 
     @Test
     public void uniqueTest2(){
-        String answer = "008571902000483000100296008810300025304025691520000873200050004000704009001932500";
+        String answer = "008571902000483000100296008810300025304025691520000873200058004000704209001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
         solver.setUnique();
@@ -109,7 +109,7 @@ public class SolverTest {
 
     @Test
     public void level0StrategiesTest(){
-        String answer = "956481327020070040700200009802090004670342001500060002367020005291000070485716293";
+        String answer = "956481327120070040700200009802090004679342001500060002367020005291000070485716293";
         solver = new Solver(grid[0]);
         solver.cleanUpGrid();
         solver.level0Strategies();
@@ -122,7 +122,7 @@ public class SolverTest {
 
     @Test
     public void level0StrategiesTest2(){
-        String answer = "008571902000483000100296008810300425304025691520040873200050004000714009001932500";
+        String answer = "008571902000483000100296008810300425304825691520040873200058004000714209001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
         solver.level0Strategies();

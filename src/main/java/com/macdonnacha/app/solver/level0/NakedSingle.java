@@ -11,6 +11,7 @@ public class NakedSingle {
 
     public void setSingleCandidateValue(Cell cell){
         int value = Integer.valueOf(cell.getPossibleCandidates());
+        // System.out.println("Naked Single: " + value + " in " + cell.coordinates());
 
         cell.setValue(value);
     }

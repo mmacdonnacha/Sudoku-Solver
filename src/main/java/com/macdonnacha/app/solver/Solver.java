@@ -15,22 +15,23 @@ public class Solver {
 
 
     public void solve(){
-        String initialGrid;
+        String initialGrid = "";
         cleanUpGrid();
+        // System.out.println(grid.fullGridInfo());
         
-        do{
+        while(!initialGrid.equals(this.grid.solutionAsSingleLine())){
             initialGrid = new String(this.grid.solutionAsSingleLine());
 
             level0Strategies();
+            // System.out.println(grid.fullGridInfo());
 
-        }while(!initialGrid.equals(this.grid.solutionAsSingleLine()));
+        }
     }
 
     public void level0Strategies(){
         setNakedSingle();
-        cleanUpGrid();
         setUnique();
-        cleanUpGrid();
+
     }
 
 
@@ -56,8 +57,12 @@ public class Solver {
             for(int col=0; col<9; col++){
                 Cell cell = grid.getCell(row, col);
                 if(!cell.isSolved()){
-                    if(nakedSingle.hasSingleCandidate(cell))
+                    if(nakedSingle.hasSingleCandidate(cell)){
                         nakedSingle.setSingleCandidateValue(cell);
+                        CleanUp.cleanUpRow(grid, cell);
+                        CleanUp.cleanUpColumn(grid, cell);
+                        CleanUp.cleanUpSquare(grid, cell);
+                    }
                 }
             }
         }
@@ -73,6 +78,9 @@ public class Solver {
                     int num = unique.uniqueCandidate(cell);
                     if(num != 0){
                         cell.setValue(num);
+                        CleanUp.cleanUpRow(grid, cell);
+                        CleanUp.cleanUpColumn(grid, cell);
+                        CleanUp.cleanUpSquare(grid, cell);
                     }
                 }
             }

@@ -38,7 +38,7 @@ public class Unique {
     }
 
     public int uniqueCandidateInRow(Cell cell) {
-        char[] array = cell.getPossibleCandidates().replace(" ", "").replace(",", "").toCharArray();
+        char[] array = cell.getPossibleCandidates().replaceAll("\\s+", "").replaceAll(",", "").toCharArray();
         for (char ch : array) {
             int num = Integer.parseInt(new String("" + ch));
             int count = 0;
@@ -54,6 +54,7 @@ public class Unique {
             }
 
             if (count == 0) {
+                // printRemovalLog(cell, num, "row");
                 return num;
             }
 
@@ -63,7 +64,7 @@ public class Unique {
     }
 
     public int uniqueCandidateInColumn(Cell cell) {
-        char[] array = cell.getPossibleCandidates().replace(" ", "").replace(",", "").toCharArray();
+        char[] array = cell.getPossibleCandidates().replaceAll("\\s+", "").replace(",", "").toCharArray();
         for (char ch : array) {
             int num = Integer.parseInt(new String("" + ch));
             int count = 0;
@@ -79,6 +80,7 @@ public class Unique {
             }
 
             if (count == 0) {
+                // printRemovalLog(cell, num, "column");
                 return num;
             }
 
@@ -88,7 +90,7 @@ public class Unique {
     }
 
     public int uniqueCandidateInSquare(Cell cell) {
-        char[] array = cell.getPossibleCandidates().replace(" ", "").replace(",", "").toCharArray();
+        char[] array = cell.getPossibleCandidates().replaceAll("\\s+", "").replace(",", "").toCharArray();
         for (char ch : array) {
             int num = Integer.parseInt(new String("" + ch));
             int count = 0;
@@ -104,11 +106,28 @@ public class Unique {
             }
 
             if (count == 0) {
+                // printRemovalLog(cell, num, "box");
                 return num;
             }
 
         }
 
         return 0;
+    }
+
+    public void printRemovalLog(Cell cell, int value, String place){
+
+        System.out.println("Unique unit: " + value + " in " + cell.coordinates()
+        + " is unique within " + place + ".");
+
+        char[] numbers = cell.getPossibleCandidates().replaceAll("\\s+", "").replace(",", "").toCharArray();
+        
+        for(char c : numbers){
+            int num = Integer.parseInt(new String("" + c));
+            if(value != num){
+                System.out.println("Unique unit: removed " + num + " from " + cell.coordinates());
+            }
+        }
+
     }
 }
