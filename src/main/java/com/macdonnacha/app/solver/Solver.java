@@ -29,9 +29,18 @@ public class Solver {
     }
 
     public void level0Strategies(){
-        setNakedSingle();
-        setUnique();
-
+        for(int row=0; row<9; row++){
+            for(int col=0; col<9; col++){
+                Cell cell = grid.getCell(row, col);
+                if(!cell.isSolved()){
+                    if(cell.getPossibleCandidates().length() == 1){
+                        setNakedSingle(cell);
+                    }else{
+                        setUnique(cell);
+                    }
+                }
+            }
+        }
     }
 
 
@@ -51,30 +60,24 @@ public class Solver {
         
     }
 
-    public void setNakedSingle(){
+    public void setNakedSingle(Cell cell){
         NakedSingle nakedSingle = new NakedSingle();
-        for(int row=0; row<9; row++){
-            for(int col=0; col<9; col++){
-                Cell cell = grid.getCell(row, col);
-                if(!cell.isSolved()){
+        
                     if(nakedSingle.hasSingleCandidate(cell)){
                         nakedSingle.setSingleCandidateValue(cell);
                         CleanUp.cleanUpRow(grid, cell);
                         CleanUp.cleanUpColumn(grid, cell);
                         CleanUp.cleanUpSquare(grid, cell);
                     }
-                }
-            }
-        }
+                
+            
+        
     }
 
 
-    public void setUnique(){
+    public void setUnique(Cell cell){
         Unique unique = new Unique(grid);
-        for(int row=0; row<9; row++){
-            for(int col=0; col<9; col++){
-                Cell cell = grid.getCell(row, col);
-                if(!cell.isSolved()){
+        
                     int num = unique.uniqueCandidate(cell);
                     if(num != 0){
                         cell.setValue(num);
@@ -82,8 +85,8 @@ public class Solver {
                         CleanUp.cleanUpColumn(grid, cell);
                         CleanUp.cleanUpSquare(grid, cell);
                     }
-                }
-            }
-        }
     }
+            
+        
+    
 }

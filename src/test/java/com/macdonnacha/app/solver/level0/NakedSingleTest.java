@@ -15,14 +15,14 @@ import org.junit.Test;
 public class NakedSingleTest {
     private Grid grid;
     private Solver solver;
-    private NakedSingle unique;
+    private NakedSingle nakedSingle;
 
     @Before
     public void setUp() {
         grid = new Grid(
            "006481300020000040700000009800090004600342001500060002300000005090000070005716200");
         solver = new Solver(grid);
-        unique = new NakedSingle();
+        nakedSingle = new NakedSingle();
 
     /*
         ++---+---+---++---+---+---++---+---+---++
@@ -49,25 +49,25 @@ public class NakedSingleTest {
     @Test
     public void checkIfCellDoesNotHaveOneCandidate(){
         Cell cell = this.grid.getCell(0, 0);
-        boolean shouldBeFalse = this.unique.hasSingleCandidate(cell);
+        boolean shouldBeFalse = this.nakedSingle.hasSingleCandidate(cell);
 
         assertFalse(shouldBeFalse);
     }
 
     @Test
     public void checkIfCellhasOnlyOneCandidate(){
-        solver.solve();
+        solver.cleanUpGrid();
         Cell cell = this.grid.getCell(0, 0);
-        boolean shouldBeTrue = this.unique.hasSingleCandidate(cell);
+        boolean shouldBeTrue = this.nakedSingle.hasSingleCandidate(cell);
 
         assertTrue(shouldBeTrue);
     }
 
     @Test
     public void setUniqueInCell(){
-        solver.solve();
+        solver.cleanUpGrid();
         Cell cell = this.grid.getCell(0, 0);
-        this.unique.setSingleCandidateValue(cell);
+        this.nakedSingle.setSingleCandidateValue(cell);
 
         assertTrue(cell.isSolved());
     }

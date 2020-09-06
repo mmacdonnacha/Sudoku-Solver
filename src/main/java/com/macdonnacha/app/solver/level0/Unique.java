@@ -123,11 +123,10 @@ public class Unique {
         char[] numbers = cell.getPossibleCandidates().replaceAll("\\s+", "").replace(",", "").toCharArray();
         
         for(char c : numbers){
-            int num = Integer.parseInt(new String("" + c));
+            int num = Character.getNumericValue(c);
             if(value != num){
                 System.out.println("Unique unit: removed " + num + " from " + cell.coordinates());
             }
         }
-
     }
 }

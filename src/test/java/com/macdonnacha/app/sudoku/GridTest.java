@@ -3,6 +3,7 @@ package com.macdonnacha.app.sudoku;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Before;
 import org.junit.After;
@@ -124,5 +125,26 @@ public class GridTest {
 
         Cell[] expected = this.grid.getSquare(0);
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void isSolvedwithEmptyCells(){
+        grid = new Grid("023456789123456789123456789123456789123456789123456789123456789123456789123456789");
+    
+        assertFalse(grid.isSolved());
+    }
+
+    @Test
+    public void isSolved(){
+        grid = new Grid("123456789123456789123456789123456789123456789123456789123456789123456789123456789");
+    
+        assertTrue(grid.isSolved());
+    }
+
+    @Test
+    public void isSolvedwithWrongValue(){
+        grid = new Grid("923456789123456789123456789123456789123456789123456789123456789123456789123456789");
+    
+        assertFalse(grid.isSolved());
     }
 }

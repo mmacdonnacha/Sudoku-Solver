@@ -3,6 +3,7 @@ package com.macdonnacha.app.solver;
 import static org.junit.Assert.assertTrue;
 
 import com.macdonnacha.app.sudoku.Grid;
+import com.macdonnacha.app.sudoku.Cell;
 
 import org.junit.Before;
 import org.junit.After;
@@ -44,7 +45,13 @@ public class SolverTest {
         String answer = "956481327120000040700000009800090004679342001500060002300020005090000070485716203";
         solver = new Solver(grid[0]);
         solver.cleanUpGrid();
-        solver.setNakedSingle();
+
+        for(int row=0; row<9; row++){
+            for(int col=0; col<9; col++){
+                Cell cell = this.grid[0].getCell(row, col);
+                solver.setNakedSingle(cell);
+            }
+        }
         String after = grid[0].solutionAsSingleLine();
 
         boolean shouldBeTrue = answer.equals(after);
@@ -58,7 +65,12 @@ public class SolverTest {
         String answer = "906481327020070040700000009802090004600342001500060002367000005291000070485716293";
         solver = new Solver(grid[0]);
         solver.cleanUpGrid();
-        solver.setUnique();
+        for(int row=0; row<9; row++){
+            for(int col=0; col<9; col++){
+                Cell cell = this.grid[0].getCell(row, col);
+                solver.setUnique(cell);
+            }
+        }
         String after = grid[0].solutionAsSingleLine();
 
         boolean shouldBeTrue = answer.equals(after);
@@ -84,7 +96,13 @@ public class SolverTest {
         String answer = "008571900000403000100096008810000425304000601520000873200058004000704000001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
-        solver.setNakedSingle();
+
+        for(int row=0; row<9; row++){
+            for(int col=0; col<9; col++){
+                Cell cell = this.grid[1].getCell(row, col);
+                solver.setNakedSingle(cell);
+            }
+        }
         String after = grid[1].solutionAsSingleLine();
 
         boolean shouldBeTrue = answer.equals(after);
@@ -98,7 +116,12 @@ public class SolverTest {
         String answer = "008571902000483000100296008810300025304025691520000873200058004000704209001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
-        solver.setUnique();
+        for(int row=0; row<9; row++){
+            for(int col=0; col<9; col++){
+                Cell cell = this.grid[1].getCell(row, col);
+                solver.setUnique(cell);
+            }
+        }
         String after = grid[1].solutionAsSingleLine();
 
         boolean shouldBeTrue = answer.equals(after);
@@ -109,7 +132,7 @@ public class SolverTest {
 
     @Test
     public void level0StrategiesTest(){
-        String answer = "956481327120070040700200009802090004679342001500060002367020005291000070485716293";
+        String answer = "956481327120070040700000009802090004679342001500060002367020005291000070485716293";
         solver = new Solver(grid[0]);
         solver.cleanUpGrid();
         solver.level0Strategies();
@@ -122,7 +145,7 @@ public class SolverTest {
 
     @Test
     public void level0StrategiesTest2(){
-        String answer = "008571902000483000100296008810300425304825691520040873200058004000714209001932500";
+        String answer = "008571902000483000100296008810300425304825691520049873200058004000714209001932500";
         solver = new Solver(grid[1]);
         solver.cleanUpGrid();
         solver.level0Strategies();

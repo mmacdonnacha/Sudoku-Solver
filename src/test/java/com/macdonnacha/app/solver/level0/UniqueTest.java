@@ -37,7 +37,7 @@ public class UniqueTest {
         ++---+---+---++---+---+---++---+---+---++
      */
         solver = new Solver(grid);
-        solver.solve();
+        solver.cleanUpGrid();
         unique = new Unique(grid);
     }
 

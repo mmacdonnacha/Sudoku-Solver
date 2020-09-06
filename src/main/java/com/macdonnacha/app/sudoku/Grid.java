@@ -355,4 +355,15 @@ public class Grid {
 
         return sb.toString();
     }
+
+
+    public boolean isSolved(){
+        boolean noEmptyCells = !this.solutionAsSingleLine().contains("0");
+        int sumOfSudoku = this.solutionAsSingleLine()
+                              .chars()
+                              .map(Character::getNumericValue)
+                              .reduce(0, (subtotal, element) -> subtotal + element);
+        
+        return noEmptyCells && sumOfSudoku == 405;
+    }
 }
