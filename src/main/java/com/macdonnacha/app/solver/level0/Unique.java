@@ -5,10 +5,11 @@ import com.macdonnacha.app.sudoku.Grid;
 
 public class Unique {
     private Grid grid;
+    private boolean silentFlag;
 
     /*
      * look at a cell check first candidate if candidate does not appear in row,
-     * column or square it must be the solution for the given cell
+     * column or Box it must be the solution for the given cell
      * 
      * if it is not the solution repeat steps with next canditate if cell cant be
      * solved check next cell
@@ -17,6 +18,7 @@ public class Unique {
 
     public Unique(Grid grid) {
         this.grid = grid;
+        this.silentFlag = grid.getSilentFlag();
     }
 
     public int uniqueCandidate(Cell cell) {
@@ -30,7 +32,7 @@ public class Unique {
         if (num != 0)
             return num;
 
-        num = uniqueCandidateInSquare(cell);
+        num = uniqueCandidateInBox(cell);
         if (num != 0)
             return num;
 
@@ -54,7 +56,7 @@ public class Unique {
             }
 
             if (count == 0) {
-                // printRemovalLog(cell, num, "row");
+                if(!silentFlag) printRemovalLog(cell, num, "row");
                 return num;
             }
 
@@ -80,7 +82,7 @@ public class Unique {
             }
 
             if (count == 0) {
-                // printRemovalLog(cell, num, "column");
+                if(!silentFlag) printRemovalLog(cell, num, "column");
                 return num;
             }
 
@@ -89,15 +91,15 @@ public class Unique {
         return 0;
     }
 
-    public int uniqueCandidateInSquare(Cell cell) {
+    public int uniqueCandidateInBox(Cell cell) {
         char[] array = cell.getPossibleCandidates().replaceAll("\\s+", "").replace(",", "").toCharArray();
         for (char ch : array) {
             int num = Integer.parseInt(new String("" + ch));
             int count = 0;
 
-            Cell[] square = grid.getSquare(cell);
+            Cell[] Box = grid.getBox(cell);
 
-            for (Cell c : square) {
+            for (Cell c : Box) {
                 if (!(c == cell)) {
                     if (c.getPossibleCandidates().contains("" + num)) {
                         count++;
@@ -106,7 +108,7 @@ public class Unique {
             }
 
             if (count == 0) {
-                // printRemovalLog(cell, num, "box");
+                if(!silentFlag) printRemovalLog(cell, num, "box");
                 return num;
             }
 

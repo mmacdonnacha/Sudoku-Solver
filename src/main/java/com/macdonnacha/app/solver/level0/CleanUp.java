@@ -4,43 +4,49 @@ import com.macdonnacha.app.sudoku.Grid;
 import com.macdonnacha.app.sudoku.Cell;
 
 public class CleanUp {
+    private boolean silentFlag;
 
-    public static void cleanUpRow(Grid grid, Cell cell) {
+    public CleanUp(boolean silentFlag){
+        this.silentFlag = silentFlag;
+    }
+
+
+    public void cleanUpRow(Grid grid, Cell cell) {
         Cell[] row = grid.getRow(cell);
         int value = cell.value();
         for (Cell c : row) {
             if (!c.isSolved()) {
-                // if (c.getPossibleCandidates().contains("" + value)) {
-                //     printRemovalLog(cell, c, "row");
-                // }
+                if (!this.silentFlag && c.getPossibleCandidates().contains("" + value)) {
+                    printRemovalLog(cell, c, "row");
+                }
 
                 c.removeCandidate(value);
             }
         }
     }
 
-    public static void cleanUpColumn(Grid grid, Cell cell) {
+    public void cleanUpColumn(Grid grid, Cell cell) {
         Cell[] column = grid.getColumn(cell);
         int value = cell.value();
         for (Cell c : column) {
             if (!c.isSolved()) {
-                // if (c.getPossibleCandidates().contains("" + value)) {
-                //     printRemovalLog(cell, c, "column");
-                // }
+                if (!this.silentFlag && c.getPossibleCandidates().contains("" + value)) {
+                    printRemovalLog(cell, c, "column");
+                }
 
                 c.removeCandidate(value);
             }
         }
     }
 
-    public static void cleanUpSquare(Grid grid, Cell cell) {
-        Cell[] square = grid.getSquare(cell);
+    public void cleanUpBox(Grid grid, Cell cell) {
+        Cell[] Box = grid.getBox(cell);
         int value = cell.value();
-        for (Cell c : square) {
+        for (Cell c : Box) {
             if (!c.isSolved()) {
-                // if (c.getPossibleCandidates().contains("" + value)) {
-                //     printRemovalLog(cell, c, "box");
-                // }
+                if (!this.silentFlag && c.getPossibleCandidates().contains("" + value)) {
+                    printRemovalLog(cell, c, "box");
+                }
 
                 c.removeCandidate(value);
             }

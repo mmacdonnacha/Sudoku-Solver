@@ -20,9 +20,9 @@ public class NakedSingleTest {
     @Before
     public void setUp() {
         grid = new Grid(
-           "006481300020000040700000009800090004600342001500060002300000005090000070005716200");
+           "006481300020000040700000009800090004600342001500060002300000005090000070005716200", true);
         solver = new Solver(grid);
-        nakedSingle = new NakedSingle();
+        nakedSingle = new NakedSingle(grid.getSilentFlag());
 
     /*
         ++---+---+---++---+---+---++---+---+---++

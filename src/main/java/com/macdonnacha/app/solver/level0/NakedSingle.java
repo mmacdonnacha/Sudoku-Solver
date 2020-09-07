@@ -3,6 +3,12 @@ package com.macdonnacha.app.solver.level0;
 import com.macdonnacha.app.sudoku.Cell;
 
 public class NakedSingle {
+
+    private boolean silentFlag;
+
+    public NakedSingle(boolean flag){
+        this.silentFlag = flag;
+    }
     
 
     public boolean hasSingleCandidate(Cell cell){
@@ -11,7 +17,7 @@ public class NakedSingle {
 
     public void setSingleCandidateValue(Cell cell){
         int value = Integer.valueOf(cell.getPossibleCandidates());
-        // System.out.println("Naked Single: " + value + " in " + cell.coordinates());
+        if(!silentFlag) System.out.println("Naked Single: " + value + " in " + cell.coordinates());
 
         cell.setValue(value);
     }

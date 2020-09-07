@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 public class Grid {
     private Cell[][] grid;
+    private boolean silentFlag;
 
-    public Grid(String numbers) {
+    public Grid(String numbers, boolean flag) {
+        this.silentFlag = flag;
         prepareGrid(numbers);
+
     }
 
     private void prepareGrid(String numbers) {
@@ -126,7 +129,7 @@ public class Grid {
         return quad.toArray(new Cell[0]);
     }
 
-    public Cell[] getSquare(Cell cell) {
+    public Cell[] getBox(Cell cell) {
         ArrayList<Cell> quad = new ArrayList<>();
         int initialI = 0;
         int initialJ = 0;
@@ -365,5 +368,9 @@ public class Grid {
                               .reduce(0, (subtotal, element) -> subtotal + element);
         
         return noEmptyCells && sumOfSudoku == 405;
+    }
+
+    public boolean getSilentFlag(){
+        return this.silentFlag;
     }
 }

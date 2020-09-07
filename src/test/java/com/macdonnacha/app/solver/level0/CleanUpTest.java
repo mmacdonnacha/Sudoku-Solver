@@ -12,10 +12,12 @@ import org.junit.Test;
 
 public class CleanUpTest {
     private Grid grid;
+    private CleanUp cleanUp;
 
     @Before
     public void setUp() {
-        grid = new Grid("020000000000000000000000000000000000000000000000000000000000000000000000000000000");
+        grid = new Grid("020000000000000000000000000000000000000000000000000000000000000000000000000000000", true);
+        cleanUp = new CleanUp(grid.getSilentFlag());
     /*
         ++---+---+---++---+---+---++---+---+---++
         ||   | 2 |   ||   |   |   ||   |   |   ||
@@ -42,7 +44,7 @@ public class CleanUpTest {
     @Test
     public void removalOfCandidatesFromRow() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpRow(grid, cell);
+        cleanUp.cleanUpRow(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeFalse = false;
@@ -66,7 +68,7 @@ public class CleanUpTest {
     @Test
     public void removalOfCandidatesFromColumn() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpColumn(grid, cell);
+        cleanUp.cleanUpColumn(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeFalse = false;
@@ -88,14 +90,14 @@ public class CleanUpTest {
     }
 
     @Test
-    public void removalOfCandidatesFromSquare() {
+    public void removalOfCandidatesFromBox() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpSquare(grid, cell);
+        cleanUp.cleanUpBox(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeFalse = false;
 
-        for (Cell c : this.grid.getSquare(cell)) {
+        for (Cell c : this.grid.getBox(cell)) {
 
             if (c != cell) {
                 shouldBeFalse = c.getPossibleCandidates().contains(value);
@@ -114,7 +116,7 @@ public class CleanUpTest {
     @Test
     public void cleanUpRowDoesNotAffectTheColumn() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpRow(grid, cell);
+        cleanUp.cleanUpRow(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;
@@ -138,12 +140,12 @@ public class CleanUpTest {
     @Test
     public void cleanUpRowDoesNotAffectTheRestOfQuadrant() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpRow(grid, cell);
+        cleanUp.cleanUpRow(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;
 
-        for (Cell c : this.grid.getSquare(cell)) {
+        for (Cell c : this.grid.getBox(cell)) {
 
             boolean cellsInRow = (c.getX() == 0 && (c.getY() == 0 || c.getY() == 1 || c.getY() == 2));
             if (!cellsInRow) {
@@ -163,7 +165,7 @@ public class CleanUpTest {
     @Test
     public void cleanUpColumnDoesNotAffectTheRestOfRow() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpColumn(grid, cell);
+        cleanUp.cleanUpColumn(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;
@@ -187,12 +189,12 @@ public class CleanUpTest {
     @Test
     public void cleanUpColumnDoesNotAffectTheRestOfQuadrant() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpColumn(grid, cell);
+        cleanUp.cleanUpColumn(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;
 
-        for (Cell c : this.grid.getSquare(cell)) {
+        for (Cell c : this.grid.getBox(cell)) {
 
             boolean cellsInColumn = (c.getY() == 1 && (c.getX() == 0 || c.getX() == 1 || c.getX() == 2));
             if (!cellsInColumn) {
@@ -210,9 +212,9 @@ public class CleanUpTest {
     }
 
     @Test
-    public void cleanUpSquareDoesNotAffectTheRestOfRows() {
+    public void cleanUpBoxDoesNotAffectTheRestOfRows() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpSquare(grid, cell);
+        cleanUp.cleanUpBox(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;
@@ -235,9 +237,9 @@ public class CleanUpTest {
     }
 
     @Test
-    public void cleanUpSquareDoesNotAffectTheRestOfColumns() {
+    public void cleanUpBoxDoesNotAffectTheRestOfColumns() {
         Cell cell = this.grid.getCell(0, 1);
-        CleanUp.cleanUpSquare(grid, cell);
+        cleanUp.cleanUpBox(grid, cell);
 
         String value = Integer.toString(cell.value());
         boolean shouldBeTrue = true;

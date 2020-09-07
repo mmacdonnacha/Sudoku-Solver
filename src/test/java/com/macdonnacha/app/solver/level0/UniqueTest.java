@@ -20,7 +20,7 @@ public class UniqueTest {
     @Before
     public void setUp() {
         grid = new Grid(
-           "000000000000100000000000100010000000000000000001000000000000000000000000001000000");
+           "000000000000100000000000100010000000000000000001000000000000000000000000001000000", true);
     /* 
         ++---+---+---++---+---+---++---+---+---++
         ||   |   |   ||   |   |   ||   |   |   ||
@@ -63,9 +63,9 @@ public class UniqueTest {
     }
 
     @Test
-    public void cell00solutionIsTheNumberOneInSquare(){
+    public void cell00solutionIsTheNumberOneInBox(){
         Cell cell = this.grid.getCell(0, 0);
-        boolean shouldBeTrue = this.unique.uniqueCandidateInSquare(cell) == 1 ? true : false;
+        boolean shouldBeTrue = this.unique.uniqueCandidateInBox(cell) == 1 ? true : false;
 
         assertTrue(shouldBeTrue);
     }
@@ -87,9 +87,9 @@ public class UniqueTest {
     }
 
     @Test
-    public void cell00solutionIsTheNumberTwoInSquare(){
+    public void cell00solutionIsTheNumberTwoInBox(){
         Cell cell = this.grid.getCell(0, 0);
-        boolean shouldBeFalse = this.unique.uniqueCandidateInSquare(cell) == 2 ? true : false;
+        boolean shouldBeFalse = this.unique.uniqueCandidateInBox(cell) == 2 ? true : false;
 
         assertFalse(shouldBeFalse);
     }
