@@ -65,11 +65,22 @@ public class NakedPair {
         String nums = cell.getPossibleCandidates().replace("[", "").replace("]", "").replace(",", "");
         int num1 = Integer.parseInt(nums.split(" ")[0]);
         int num2 = Integer.parseInt(nums.split(" ")[1]);
+        if(!silentFlag) System.out.println("Naked Pair: [row] " + num1 + ", " + num2 + " in "
+             + cell.coordinates() + ", " + pair.coordinates());
         
         for(Cell c : row){
             if(!c.isSolved() && c != cell && c != pair){
-                c.removeCandidate(num1);
-                c.removeCandidate(num2);
+                if(c.getPossibleCandidates().contains("" + num1)){
+                    c.removeCandidate(num1);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num1,"row");
+                }
+                if(c.getPossibleCandidates().contains("" + num2)){ 
+                    c.removeCandidate(num2);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num2,"row");
+                }
+                
             }
         }
     }
@@ -87,11 +98,21 @@ public class NakedPair {
         String nums = cell.getPossibleCandidates().replace("[", "").replace("]", "").replace(",", "");
         int num1 = Integer.parseInt(nums.split(" ")[0]);
         int num2 = Integer.parseInt(nums.split(" ")[1]);
+        if(!silentFlag) System.out.println("Naked Pair: [column] " + num1 + ", " + num2 + " in "
+             + cell.coordinates() + ", " + pair.coordinates());
         
         for(Cell c : column){
             if(!c.isSolved() && c != cell && c != pair){
-                c.removeCandidate(num1);
-                c.removeCandidate(num2);
+                if(c.getPossibleCandidates().contains("" + num1)){
+                    c.removeCandidate(num1);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num1,"column");
+                }
+                if(c.getPossibleCandidates().contains("" + num2)){ 
+                    c.removeCandidate(num2);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num2,"column");
+                }
             }
         }
     }
@@ -109,12 +130,43 @@ public class NakedPair {
         String nums = cell.getPossibleCandidates().replace("[", "").replace("]", "").replace(",", "");
         int num1 = Integer.parseInt(nums.split(" ")[0]);
         int num2 = Integer.parseInt(nums.split(" ")[1]);
+        if(!silentFlag) System.out.println("Naked Pair: [box] " + num1 + ", " + num2 + " in "
+             + cell.coordinates() + ", " + pair.coordinates());
         
         for(Cell c : Box){
             if(!c.isSolved() && c != cell && c != pair){
-                c.removeCandidate(num1);
-                c.removeCandidate(num2);
+                if(c.getPossibleCandidates().contains("" + num1)){
+                    c.removeCandidate(num1);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num1,"box");
+                }
+                if(c.getPossibleCandidates().contains("" + num2)){ 
+                    c.removeCandidate(num2);
+                    if(!silentFlag) 
+                        printRemovalLog(new Cell[]{cell, pair}, c, num2,"box");
+                }
             }
+        }
+    }
+
+    public static void printRemovalLog(Cell[] pair, Cell cellToBeRemoved, int num, String place) {
+
+        switch (place) {
+            case "row":
+                System.out.println("Naked Pair [row of " + pair[0].coordinates() + ", " +pair[1].coordinates() + "]: " 
+                    + "removed " + num
+                    + " from " + cellToBeRemoved.coordinates());
+                break;
+            case "column":
+                System.out.println("Naked Pair [column of " + pair[0].coordinates() + ", " +pair[1].coordinates() + "]: " 
+                    + "removed " + num 
+                    + " from " + cellToBeRemoved.coordinates());
+                break;
+            case "box":
+                System.out.println("Naked Pair [box of " + pair[0].coordinates() + ", " +pair[1].coordinates() + "]: " 
+                    + "removed " + num 
+                    + " from " + cellToBeRemoved.coordinates());
+                break;
         }
     }
     

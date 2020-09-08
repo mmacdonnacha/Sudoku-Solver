@@ -30,16 +30,16 @@ public class Solver {
         if (!silentFlag) System.out.println(grid.fullGridInfo());
 
         while (true) {
-            initialGrid = new String(this.grid.solutionAsSingleLine());
+            if(initialGrid.equals(this.grid.fullGridInfo()))
+                break;
 
+            initialGrid = new String(this.grid.fullGridInfo());
+            
             level0Strategies();
             if (!silentFlag) System.out.println(grid.fullGridInfo());
 
-            if(initialGrid.equals(this.grid.solutionAsSingleLine()))
+            if(initialGrid.equals(this.grid.fullGridInfo()))
                 level1Strategies();
-
-            if(initialGrid.equals(this.grid.solutionAsSingleLine()))
-                break;
         }
     }
 
