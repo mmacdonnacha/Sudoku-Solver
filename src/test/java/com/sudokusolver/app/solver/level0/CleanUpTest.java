@@ -1,20 +1,20 @@
-package com.macdonnacha.app.solver.level0;
+package com.sudokusolver.app.solver.level0;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import com.sudokusolver.app.sudoku.Grid;
+import com.sudokusolver.app.sudoku.Cell;
 
-import com.macdonnacha.app.sudoku.Grid;
-import com.macdonnacha.app.sudoku.Cell;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
 
 public class CleanUpTest {
     private Grid grid;
     private CleanUp cleanUp;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         grid = new Grid("020000000000000000000000000000000000000000000000000000000000000000000000000000000", true);
         cleanUp = new CleanUp(grid.getSilentFlag());
@@ -36,7 +36,7 @@ public class CleanUpTest {
     
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         grid = null;
     }

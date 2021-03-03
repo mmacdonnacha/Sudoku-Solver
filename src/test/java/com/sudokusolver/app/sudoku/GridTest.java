@@ -1,24 +1,24 @@
-package com.macdonnacha.app.sudoku;
+package com.sudokusolver.app.sudoku;
 
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertArrayEquals;
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 
 
 public class GridTest {
     private Grid grid;
 
-    @Before
+    @BeforeEach
     public void setUp() {
        grid = new Grid("123456789123456789123456789123456789123456789123456789123456789123456789123456789", false);
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         grid = null;
     }
@@ -30,6 +30,7 @@ public class GridTest {
     }
 
     @Test
+    @DisplayName("Check rows have 9 cells")
     public void rowsAreLengthNine()
     {
         boolean isLengthNine = false;
@@ -46,6 +47,7 @@ public class GridTest {
     }
 
     @Test
+    @DisplayName("Check columns have 9 cells")
     public void columnsAreLengthNine()
     {
         boolean isLengthNine = false;
@@ -63,6 +65,7 @@ public class GridTest {
 
 
     @Test
+    @DisplayName("Check quandrants have 9 cells")
     public void QuadrantAreNineCells()
     {
         boolean isLengthNine = false;
@@ -80,6 +83,7 @@ public class GridTest {
 
 
     @Test
+    @DisplayName("Test getRow() returns all cells in a row")
     public void getRowReturnsCorrectCells(){
         Cell[] actualRow = {
             this.grid.getCell(0,0),
@@ -98,6 +102,7 @@ public class GridTest {
     }
 
     @Test
+    @DisplayName("Test getColumn() returns all cells in a column")
     public void getColumnReturnsCorrectCells(){
         Cell[] actual = {
             this.grid.getCell(0,0),
@@ -116,6 +121,7 @@ public class GridTest {
     }
 
     @Test
+    @DisplayName("Test getSquare() returns all cells in a quadrant")
     public void getSquareReturnsCorrectCells(){
         Cell[] actual = {
             this.grid.getCell(0,0), this.grid.getCell(0,1), this.grid.getCell(0,2),
@@ -128,6 +134,7 @@ public class GridTest {
     }
 
     @Test
+    @DisplayName("Grid with empty cells is not solved")
     public void isSolvedwithEmptyCells(){
         grid = new Grid("023456789123456789123456789123456789123456789123456789123456789123456789123456789", false);
     

@@ -1,4 +1,4 @@
-package com.macdonnacha.app.sudoku;
+package com.sudokusolver.app.sudoku;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -37,12 +37,13 @@ public class Cell {
     public void setValue(int num){
         
         if(num == 0){
-            // do nothing as candidates is already set in the constructor
+            candidates = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
         } else {
             this.candidates = new ArrayList<>();
             this.candidates.add(num);
-            value = num;
         }
+
+        value = num;
     }
 
     public void removeCandidate(int num){
@@ -83,7 +84,8 @@ public class Cell {
                 square = 2;
             }
 
-        }else if(3 <= this.x && this.x <= 5){
+        }
+        else if(3 <= this.x && this.x <= 5){
             // second row of squares
             if(0<= this.y && this.y <= 2){
                 // first column of squares i.e middle left

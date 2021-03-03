@@ -1,7 +1,7 @@
-package com.macdonnacha.app;
+package com.sudokusolver.app;
 
-import com.macdonnacha.app.sudoku.Grid;
-import com.macdonnacha.app.solver.Solver;
+import com.sudokusolver.app.sudoku.Grid;
+import com.sudokusolver.app.solver.Solver;
 
 public class App {
     public static void main(String[] args) {

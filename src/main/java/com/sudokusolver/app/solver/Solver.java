@@ -1,11 +1,11 @@
-package com.macdonnacha.app.solver;
+package com.sudokusolver.app.solver;
 
-import com.macdonnacha.app.sudoku.Grid;
-import com.macdonnacha.app.sudoku.Cell;
-import com.macdonnacha.app.solver.level0.CleanUp;
-import com.macdonnacha.app.solver.level0.NakedSingle;
-import com.macdonnacha.app.solver.level0.Unique;
-import com.macdonnacha.app.solver.level1.NakedPair;
+import com.sudokusolver.app.sudoku.Grid;
+import com.sudokusolver.app.sudoku.Cell;
+import com.sudokusolver.app.solver.level0.CleanUp;
+import com.sudokusolver.app.solver.level0.NakedSingle;
+import com.sudokusolver.app.solver.level0.Unique;
+import com.sudokusolver.app.solver.level1.NakedPair;
 
 public class Solver {
     private boolean silentFlag;

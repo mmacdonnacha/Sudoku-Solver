@@ -1,6 +1,7 @@
-package com.macdonnacha.app.sudoku;
+package com.sudokusolver.app.sudoku;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Grid {
     private Cell[][] grid;
@@ -197,6 +198,13 @@ public class Grid {
             }
         }
         return sb.toString();
+
+
+        // return Arrays.asList(grid).stream()
+        //                           .flatmap(row -> Arrays.asList(row))
+        //                           .mapToObj(cell -> (Cell)cell)
+        //                           .mapToInt(cell -> cell.value())
+        //                           .collect(Collectors.joining());
     }
 
     public String toString() {
@@ -364,7 +372,7 @@ public class Grid {
         boolean noEmptyCells = !this.solutionAsSingleLine().contains("0");
         int sumOfSudoku = this.solutionAsSingleLine()
                               .chars()
-                              .map(Character::getNumericValue)
+                              .mapToObj(Character::getNumericValue)
                               .reduce(0, (subtotal, element) -> subtotal + element);
         
         return noEmptyCells && sumOfSudoku == 405;

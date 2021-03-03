@@ -1,9 +1,9 @@
-package com.macdonnacha.app.solver.level1;
+package com.sudokusolver.app.solver.level1;
 
 import java.util.Arrays;
 
-import com.macdonnacha.app.sudoku.Cell;
-import com.macdonnacha.app.sudoku.Grid;
+import com.sudokusolver.app.sudoku.Cell;
+import com.sudokusolver.app.sudoku.Grid;
 
 public class NakedPair {
     private boolean silentFlag;

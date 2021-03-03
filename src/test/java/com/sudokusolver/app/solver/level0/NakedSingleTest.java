@@ -1,15 +1,14 @@
-package com.macdonnacha.app.solver.level0;
+package com.sudokusolver.app.solver.level0;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import com.sudokusolver.app.sudoku.Grid;
+import com.sudokusolver.app.sudoku.Cell;
+import com.sudokusolver.app.solver.Solver;
 
-import com.macdonnacha.app.sudoku.Grid;
-import com.macdonnacha.app.sudoku.Cell;
-import com.macdonnacha.app.solver.Solver;
-
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 
 public class NakedSingleTest {
@@ -17,7 +16,7 @@ public class NakedSingleTest {
     private Solver solver;
     private NakedSingle nakedSingle;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         grid = new Grid(
            "006481300020000040700000009800090004600342001500060002300000005090000070005716200", true);
@@ -41,7 +40,7 @@ public class NakedSingleTest {
      */
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         grid = null;
     }

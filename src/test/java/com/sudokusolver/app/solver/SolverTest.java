@@ -1,20 +1,19 @@
-package com.macdonnacha.app.solver;
+package com.sudokusolver.app.solver;
 
-import static org.junit.Assert.assertTrue;
+import com.sudokusolver.app.sudoku.Grid;
+import com.sudokusolver.app.sudoku.Cell;
 
-import com.macdonnacha.app.sudoku.Grid;
-import com.macdonnacha.app.sudoku.Cell;
-
-import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class SolverTest {
     private Grid[] grid;
     private Solver solver;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         grid = new Grid[]{
             new Grid("006481300020000040700000009800090004600342001500060002300000005090000070005716200", true),
@@ -23,7 +22,7 @@ public class SolverTest {
         
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         grid = null;
     }
